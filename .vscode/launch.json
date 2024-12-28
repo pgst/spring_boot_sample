@@ -2,13 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-Application<spring-boot-complete>",
+            "name": "Launch MotocatalogApplication",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.example.springboot.Application",
-            "projectName": "spring-boot-complete",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        }
+            "mainClass": "jp.cloudfree.motocatalog.MotocatalogApplication",
+            "projectName": "motocatalog"
+        },
     ]
 }
