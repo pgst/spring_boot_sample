@@ -1,12 +1,16 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
     "cSpell.words": [
+        "Hachi",
+        "Maru",
+        "moto",
         "motocatalog",
+        "motos",
         "mybatis",
         "projectlombok",
         "springframework",
         "thymeleaf"
     ],
-    "java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-current",  // 手動で追加
+    "java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-current" // 手動で追加
     // "java.autobuild.enabled": true  // 手動で追加
 }
