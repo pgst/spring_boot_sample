@@ -2,12 +2,14 @@
     "java.compile.nullAnalysis.mode": "automatic",
     "cSpell.words": [
         "Hachi",
+        "logback",
         "Maru",
         "moto",
         "motocatalog",
         "motos",
         "mybatis",
         "projectlombok",
+        "rollingpolicy",
         "springframework",
         "thymeleaf"
     ],

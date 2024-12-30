@@ -3,6 +3,8 @@ package jp.cloudfree.motocatalog.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+// import org.slf4j.LoggerFactory;  // @Slf4jで解決するのでimport不要
+// import org.slf4j.Logger;         // @Slf4jで解決するのでimport不要
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.cloudfree.bean.Brand;
 import jp.cloudfree.bean.Motorcycle;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j  // 変数logを使用できるようになる
 public class MotosController {
     
+    // ログ部品を使用できるようになる
+    // private static final Logger log = LoggerFactory.getLogger(MotosController.class);
+
     @GetMapping("/hello")
     public String hello(@RequestParam(name = "name", required = false) String name, Model model) {
         model.addAttribute("name", name);
@@ -37,6 +44,8 @@ public class MotosController {
 
         model.addAttribute("brands", brands);
         model.addAttribute("motos", motos);
+
+        log.debug("motos: {}", motos);  // slf4jのlogを使用
         
         return "moto_list";
     }
