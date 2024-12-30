@@ -3,7 +3,7 @@ spring:
         name: motocatalog
 logging:
     level:
-        root: debug
+        root: INFO
     file:
         name: app.log
     logback:
