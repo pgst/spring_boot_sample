@@ -25,7 +25,8 @@
                 "esbenp.prettier-vscode",
                 "ms-vscode.test-adapter-converter",
                 "hbenl.vscode-test-explorer",
-                "intellsmi.comment-translate"
+                "intellsmi.comment-translate",
+                "christian-kohler.path-intellisense"
             ]
         }
     }
