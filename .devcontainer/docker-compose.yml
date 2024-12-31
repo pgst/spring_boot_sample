@@ -13,14 +13,14 @@ services:
         image: mysql:8.0
         restart: always
         environment:
-            - MYSQL_DATABASE=testdb
-            - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_USER=test
-            - MYSQL_PASSWORD=test
+            - MYSQL_DATABASE=motocatalogdb # データベース名
+            - MYSQL_ROOT_PASSWORD=root # rootユーザーのパスワード
+            - MYSQL_USER=develop # ユーザー名
+            - MYSQL_PASSWORD=develop # パスワード
         volumes:
             - mysql-data:/var/lib/mysql
         ports:
-            - "3306:3306"
+            - "3306:3306" # ポートフォワーディング
         networks:
             - app-network
 
