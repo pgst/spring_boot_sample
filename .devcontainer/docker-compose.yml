@@ -1,0 +1,46 @@
+services:
+    app:
+        build:
+            context: ..
+            dockerfile: .devcontainer/Dockerfile
+        volumes:
+            - ..:/workspaces:cached
+        command: sleep infinity
+        networks:
+            - app-network
+
+    db:
+        image: mysql:8.0
+        restart: always
+        environment:
+            - MYSQL_DATABASE=testdb
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=test
+        volumes:
+            - mysql-data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        networks:
+            - app-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=db
+            - PMA_USER=root
+            - PMA_PASSWORD=root
+        ports:
+            - "8081:80"
+        depends_on:
+            - db
+        networks:
+            - app-network
+
+volumes:
+    mysql-data:
+
+networks:
+    app-network:
+        driver: bridge
