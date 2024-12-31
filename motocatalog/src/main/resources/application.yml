@@ -1,6 +1,11 @@
 spring:
     application:
         name: motocatalog
+    datasource:
+        url: jdbc:mysql://db:3306/testdb
+        username: test
+        password: test
+        driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
     level:
         root: INFO
