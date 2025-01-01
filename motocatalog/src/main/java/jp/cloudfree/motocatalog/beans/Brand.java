@@ -1,4 +1,4 @@
-package jp.cloudfree.bean;
+package jp.cloudfree.motocatalog.beans;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
