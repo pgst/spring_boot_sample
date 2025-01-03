@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.cloudfree.motocatalog.beans.Brand;
 import jp.cloudfree.motocatalog.beans.Motorcycle;
+import jp.cloudfree.motocatalog.beans.SearchCondition;
 import jp.cloudfree.motocatalog.services.MotosService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,7 +48,8 @@ public class MotosController {
         // motos.add(new Motorcycle(1, "GB350", 800, 1, "空冷", 500000, "いい音", new Brand("01", "HONDA"), 1, null, null));
         // motos.add(new Motorcycle(2, "Ninja", 800, 2, "水冷", 1000000, "すいすい", new Brand("02", "KAWASAKI"), 1, null, null));
         // motos.add(new Motorcycle(3, "Z900RS CAFE", 820, 4, "水冷", 1380000, "音めちゃうるさい", new Brand("02", "KAWASAKI"), 1, null, null));
-        motos = service.getMotos();
+        SearchCondition condition = new SearchCondition();
+        motos = service.getMotos(condition);
 
         model.addAttribute("brands", brands);
         model.addAttribute("motos", motos);
