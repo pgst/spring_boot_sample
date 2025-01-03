@@ -10,11 +10,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+// import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.cloudfree.motocatalog.beans.Motorcycle;
-import jp.cloudfree.motocatalog.beans.SearchCondition;
+import jp.cloudfree.motocatalog.beans.SearchForm;
 
 @SpringBootTest
 public class MotosServiceTest {
@@ -50,7 +50,7 @@ public class MotosServiceTest {
     })
     void test001(String brandId, String brandName) {
 
-        SearchCondition condition = new SearchCondition();
+        SearchForm condition = new SearchForm();
         condition.setBrandId(brandId);
         List<Motorcycle> motos = service.getMotos(condition);
 
@@ -65,7 +65,7 @@ public class MotosServiceTest {
     @Test
     void test002() {
 
-        SearchCondition condition = new SearchCondition();
+        SearchForm condition = new SearchForm();
         condition.setBrandId("99");
         List<Motorcycle> motos = service.getMotos(condition);
 
@@ -77,7 +77,7 @@ public class MotosServiceTest {
     @CsvSource({"DAX125", "VanVan"})
     void test003(String motoName) {
 
-        SearchCondition condition = new SearchCondition();
+        SearchForm condition = new SearchForm();
         condition.setKeyword(motoName);
         List<Motorcycle> motos = service.getMotos(condition);
 
@@ -93,7 +93,7 @@ public class MotosServiceTest {
     @CsvSource({"DAX, DAX125", "an, VanVan", "X12, DAX125"})
     void test004(String keyword, String motoName) {
 
-        SearchCondition condition = new SearchCondition();
+        SearchForm condition = new SearchForm();
         condition.setKeyword(keyword);
         List<Motorcycle> motos = service.getMotos(condition);
 

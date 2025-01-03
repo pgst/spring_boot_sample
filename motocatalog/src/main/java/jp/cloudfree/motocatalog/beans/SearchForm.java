@@ -6,7 +6,7 @@ import lombok.Data;
  * 検索条件を保持するクラス
  */
 @Data
-public class SearchCondition {
+public class SearchForm {
 
     // ブランドID
     private String brandId;
