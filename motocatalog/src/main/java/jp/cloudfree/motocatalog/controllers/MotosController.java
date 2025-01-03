@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.cloudfree.motocatalog.beans.Brand;
 import jp.cloudfree.motocatalog.beans.Motorcycle;
-import jp.cloudfree.motocatalog.beans.SearchCondition;
+import jp.cloudfree.motocatalog.beans.SearchForm;
 import jp.cloudfree.motocatalog.services.MotosService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,33 +29,62 @@ public class MotosController {
 
     @GetMapping("/hello")
     public String hello(@RequestParam(name = "name", required = false) String name, Model model) {
+
         model.addAttribute("name", name);
         return "test";
     }
 
+    /**
+     * バイク一覧を表示する
+     * @param searchForm
+     * @param model
+     * @return 遷移先
+     */
     @GetMapping("/motos")
-    public String motos(Model model) {
-        // ブランド
-        List<Brand> brands = new ArrayList<>();
-        // brands.add(new Brand("01", "HONDA"));
-        // brands.add(new Brand("02", "kAWASAKI"));
-        // brands.add(new Brand("03", "YAMAHA"));
-        // brands.add(new Brand("04", "SUZUKI"));
-        brands = service.getBrands();
+    public String motos(SearchForm searchForm, Model model) {
+
+        log.info("検索条件: {}", searchForm);
+        
+        // ブランドリストを準備
+        this.setBrands(model);
 
         // バイク
         List<Motorcycle> motos = new ArrayList<>();
-        // motos.add(new Motorcycle(1, "GB350", 800, 1, "空冷", 500000, "いい音", new Brand("01", "HONDA"), 1, null, null));
-        // motos.add(new Motorcycle(2, "Ninja", 800, 2, "水冷", 1000000, "すいすい", new Brand("02", "KAWASAKI"), 1, null, null));
-        // motos.add(new Motorcycle(3, "Z900RS CAFE", 820, 4, "水冷", 1380000, "音めちゃうるさい", new Brand("02", "KAWASAKI"), 1, null, null));
-        SearchCondition condition = new SearchCondition();
-        motos = service.getMotos(condition);
+        motos = service.getMotos(searchForm);
 
-        model.addAttribute("brands", brands);
         model.addAttribute("motos", motos);
 
-        log.debug("motos: {}", motos);  // slf4jのlogを使用
-        
+        log.debug("motos: {}", motos); // slf4jのlogを使用
+
         return "moto_list";
+    }
+    
+    /**
+     * 検索条件をクリアする
+     * @param searchForm
+     * @param model
+     * @return 遷移先
+     */
+    @GetMapping("/motos/reset")
+    public String reset(SearchForm searchForm, Model model) {
+
+        // ブランドリストを準備
+        this.setBrands(model);
+
+        /* 検索条件のクリア */
+        searchForm = new SearchForm();
+        return "moto_list";
+    }
+
+    /**
+     * ブランドリストを取得してModelにセットする
+     * @param model
+     */
+    private void setBrands(Model model) {
+
+        // ブランド
+        List<Brand> brands = new ArrayList<>();
+        brands = service.getBrands();
+        model.addAttribute("brands", brands);
     }
 }
